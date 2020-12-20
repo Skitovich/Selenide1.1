@@ -25,7 +25,6 @@ public class AppCardDeliveryTest {
     @Test
     public void shouldRegistered() {
         LocalDate now = LocalDate.now().plusDays(4);
-//        int day = now.getDayOfMonth();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 
