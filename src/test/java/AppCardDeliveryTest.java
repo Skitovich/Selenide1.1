@@ -8,10 +8,8 @@ import org.openqa.selenium.Keys;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
 import static com.codeborne.selenide.Selenide.element;
 import static com.codeborne.selenide.Selenide.open;
-
 
 public class AppCardDeliveryTest {
 
@@ -24,28 +22,38 @@ public class AppCardDeliveryTest {
 
     @Test
     public void shouldRegistered() {
-        LocalDate now = LocalDate.now().plusDays(4);
+        LocalDate dayDeliveryCard = LocalDate.now().plusDays(3);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 
         open("http://localhost:9999/");
         element("[data-test-id='city'] .input__control").setValue("Москва");
-        element("[data-test-id=date] [placeholder=\"Дата встречи\"]").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE,now.format(formatter));
+        element("[data-test-id=date] [placeholder=\"Дата встречи\"]").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE, dayDeliveryCard.format(formatter));
         element("[data-test-id='name'] .input__control").setValue("Скитович Руслан");
         element("[data-test-id='phone'] .input__control").setValue("+79150000000");
         element(".checkbox__box").click();
         element(".button__text").click();
-        element(".notification__content").waitUntil(Condition.visible, 15000).shouldHave(Condition.text(now.format(formatter)));
+        element(".notification__content").waitUntil(Condition.visible, 15000).shouldHave(Condition.text(dayDeliveryCard.format(formatter)));
     }
 
     @Test
     public void shouldNotRegisteredByCity() {
-        LocalDate now = LocalDate.now().plusDays(4);
+        LocalDate dayDeliveryCard = LocalDate.now().plusDays(3);
+        LocalDate now = LocalDate.now();
+
+        int dayOfMonth = dayDeliveryCard.getDayOfMonth();
         int day = now.getDayOfMonth();
 
         open("http://localhost:9999/");
-        element("[data-test-id='date'] .input__box ").click();
-        element(By.xpath("//td[contains(text()," + day + ")]")).click();
+
+        if (dayOfMonth < day) {
+            element("[data-test-id='date'] .input__box ").click();
+            element("[data-step='1']").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        } else {
+            element("[data-test-id='date'] .input__box ").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        }
         element("[data-test-id='name'] .input__control").setValue("Скитович Руслан");
         element("[data-test-id='phone'] .input__control").setValue("+79150000000");
         element(".checkbox__box").click();
@@ -55,13 +63,22 @@ public class AppCardDeliveryTest {
 
     @Test
     public void shouldNotRegisteredByName() {
-        LocalDate now = LocalDate.now().plusDays(4);
+        LocalDate dayDeliveryCard = LocalDate.now().plusDays(3);
+        LocalDate now = LocalDate.now();
+
+        int dayOfMonth = dayDeliveryCard.getDayOfMonth();
         int day = now.getDayOfMonth();
 
         open("http://localhost:9999/");
         element("[data-test-id='city'] .input__control").setValue("Москва");
-        element("[data-test-id='date'] .input__box ").click();
-        element(By.xpath("//td[contains(text()," + day + ")]")).click();
+        if (dayOfMonth < day) {
+            element("[data-test-id='date'] .input__box ").click();
+            element("[data-step='1']").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        } else {
+            element("[data-test-id='date'] .input__box ").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        }
         element("[data-test-id='phone'] .input__control").setValue("+79150000000");
         element(".checkbox__box").click();
         element(".button__text").click();
@@ -70,13 +87,22 @@ public class AppCardDeliveryTest {
 
     @Test
     public void shouldNotRegisteredByPhone() {
-        LocalDate now = LocalDate.now().plusDays(4);
+        LocalDate dayDeliveryCard = LocalDate.now().plusDays(3);
+        LocalDate now = LocalDate.now();
+
+        int dayOfMonth = dayDeliveryCard.getDayOfMonth();
         int day = now.getDayOfMonth();
 
         open("http://localhost:9999/");
         element("[data-test-id='city'] .input__control").setValue("Москва");
-        element("[data-test-id='date'] .input__box ").click();
-        element(By.xpath("//td[contains(text()," + day + ")]")).click();
+        if (dayOfMonth < day) {
+            element("[data-test-id='date'] .input__box ").click();
+            element("[data-step='1']").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        } else {
+            element("[data-test-id='date'] .input__box ").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        }
         element("[data-test-id='name'] .input__control").setValue("Скитович Руслан");
         element(".checkbox__box").click();
         element(".button__text").click();
@@ -85,13 +111,22 @@ public class AppCardDeliveryTest {
 
     @Test
     public void shouldNotRegisteredByCheckBox() {
-        LocalDate now = LocalDate.now().plusDays(4);
+        LocalDate dayDeliveryCard = LocalDate.now().plusDays(3);
+        LocalDate now = LocalDate.now();
+
+        int dayOfMonth = dayDeliveryCard.getDayOfMonth();
         int day = now.getDayOfMonth();
 
         open("http://localhost:9999/");
         element("[data-test-id='city'] .input__control").setValue("Москва");
-        element("[data-test-id='date'] .input__box ").click();
-        element(By.xpath("//td[contains(text()," + day + ")]")).click();
+        if (dayOfMonth < day) {
+            element("[data-test-id='date'] .input__box ").click();
+            element("[data-step='1']").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        } else {
+            element("[data-test-id='date'] .input__box ").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        }
         element("[data-test-id='name'] .input__control").setValue("Скитович Руслан");
         element("[data-test-id='phone'] .input__control").setValue("+79150000000");
         element(".button__text").click();
@@ -100,20 +135,34 @@ public class AppCardDeliveryTest {
 
     @Test
     public void shouldRegisteredTaskWithStar() {
-        LocalDate now = LocalDate.now().plusDays(30);
+        LocalDate dayDeliveryCard = LocalDate.now().plusDays(7);
+        LocalDate now = LocalDate.now();
+
+        int dayOfMonth = dayDeliveryCard.getDayOfMonth();
         int day = now.getDayOfMonth();
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
         open("http://localhost:9999/");
         element("[data-test-id='city'] .input__control").setValue("Мо");
         element("div.menu > div:nth-of-type(3) > .menu-item__control").click();
-        element("[data-test-id='date'] .input__box ").click();
-        element("[data-step='1']").click();
-        element(By.xpath("//td[contains(text()," + day + ")]")).click();
+
+        if (dayOfMonth < day) {
+            element("[data-test-id='date'] .input__box ").click();
+            element("[data-step='1']").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        } else {
+            element("[data-test-id='date'] .input__box ").click();
+            element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
+        }
+
+
         element("[data-test-id='name'] .input__control").setValue("Скитович Руслан");
         element("[data-test-id='phone'] .input__control").setValue("+79150000000");
         element(".checkbox__box").click();
         element(".button__text").click();
-        element(".notification__content").waitUntil(Condition.visible, 15000).shouldHave(Condition.text(now.format(formatter)));
+        element(".notification__content").waitUntil(Condition.visible, 15000).shouldHave(Condition.text(dayDeliveryCard.format(formatter)));
     }
+
+
 }
