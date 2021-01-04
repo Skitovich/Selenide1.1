@@ -17,7 +17,7 @@ public class AppCardDeliveryTest {
     @BeforeAll
     static void setUp() {
         Configuration.startMaximized = true;
-        Configuration.browser = "firefox";
+        Configuration.browser = "opera";
     }
 
     @Test
@@ -147,7 +147,7 @@ public class AppCardDeliveryTest {
         element("[data-test-id='city'] .input__control").setValue("Мо");
         element("div.menu > div:nth-of-type(3) > .menu-item__control").click();
 
-        if (dayOfMonth < day) {
+        if (dayOfMonth < day & dayOfMonth > 6) {
             element("[data-test-id='date'] .input__box ").click();
             element("[data-step='1']").click();
             element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
@@ -161,7 +161,8 @@ public class AppCardDeliveryTest {
         element("[data-test-id='phone'] .input__control").setValue("+79150000000");
         element(".checkbox__box").click();
         element(".button__text").click();
-        element(".notification__content").waitUntil(Condition.visible, 15000).shouldHave(Condition.text(dayDeliveryCard.format(formatter)));
+        element(".notification__content").waitUntil(Condition.visible,
+                15000).shouldHave(Condition.text(dayDeliveryCard.format(formatter)));
     }
 
 
