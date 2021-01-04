@@ -1,1 +1,1 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/13p8r3y4bh0funwp?svg=true)](https://ci.appveyor.com/project/Skitovich/selenide1-1)
+[![Build status](https://ci.appveyor.com/api/projects/status/13p8r3y4bh0funwp?svg=true)](https://ci.appveyor.com/project/Skitovich/)
