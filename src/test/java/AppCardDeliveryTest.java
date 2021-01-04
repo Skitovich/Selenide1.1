@@ -147,7 +147,7 @@ public class AppCardDeliveryTest {
         element("[data-test-id='city'] .input__control").setValue("Мо");
         element("div.menu > div:nth-of-type(3) > .menu-item__control").click();
 
-        if (dayOfMonth < day & dayOfMonth > 6) {
+        if (dayOfMonth < day ) {
             element("[data-test-id='date'] .input__box ").click();
             element("[data-step='1']").click();
             element(By.xpath("//td[contains(text()," + dayOfMonth + ")]")).click();
